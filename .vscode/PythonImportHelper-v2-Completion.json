@@ -1,0 +1,182 @@
+[
+    {
+        "label": "heapq",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "heapq",
+        "description": "heapq",
+        "detail": "heapq",
+        "documentation": {}
+    },
+    {
+        "label": "COUNT",
+        "kind": 5,
+        "importPath": "Assignment 1.Fibbo-iterative",
+        "description": "Assignment 1.Fibbo-iterative",
+        "peekOfCode": "COUNT = 0\nx=int(input(\"Enter Number of Terms :\"))\nfirst=0\nsec=1\nc=0\nif(x<0):\n    print(\"Enter valid input..\")\nelif(x==0):\n    print(0)\nelif(x==1):",
+        "detail": "Assignment 1.Fibbo-iterative",
+        "documentation": {}
+    },
+    {
+        "label": "recur_fibo",
+        "kind": 2,
+        "importPath": "Assignment 1.Fibo-Recursive",
+        "description": "Assignment 1.Fibo-Recursive",
+        "peekOfCode": "def recur_fibo(n):  \n   global COUNT\n   COUNT=COUNT+1\n   if n <= 1:  \n       return n  \n   else:  \n       return(recur_fibo(n-1) + recur_fibo(n-2))  \n# take input from the user  \nnterms = int(input(\"How many terms? \"))  \n# check if the number of terms is valid  ",
+        "detail": "Assignment 1.Fibo-Recursive",
+        "documentation": {}
+    },
+    {
+        "label": "nterms",
+        "kind": 5,
+        "importPath": "Assignment 1.Fibo-Recursive",
+        "description": "Assignment 1.Fibo-Recursive",
+        "peekOfCode": "nterms = int(input(\"How many terms? \"))  \n# check if the number of terms is valid  \nif nterms <= 0:  \n   print(\"Plese enter a positive integer\")  \nelse:  \n   print(\"Fibonacci sequence:\")  \n   for i in range(nterms):  \n       print(recur_fibo(i))\nprint(\"Steps reqired using Counter \", COUNT)",
+        "detail": "Assignment 1.Fibo-Recursive",
+        "documentation": {}
+    },
+    {
+        "label": "node",
+        "kind": 6,
+        "importPath": "Assignment 2.Assignement_2",
+        "description": "Assignment 2.Assignement_2",
+        "peekOfCode": "class node: \n\tdef __init__(self, freq, symbol, left=None, right=None): \n\t\t# frequency of symbol \n\t\tself.freq = freq \n\t\t# symbol name (character) \n\t\tself.symbol = symbol \n\t\t# node left of current node \n\t\tself.left = left \n\t\t# node right of current node \n\t\tself.right = right ",
+        "detail": "Assignment 2.Assignement_2",
+        "documentation": {}
+    },
+    {
+        "label": "printNodes",
+        "kind": 2,
+        "importPath": "Assignment 2.Assignement_2",
+        "description": "Assignment 2.Assignement_2",
+        "peekOfCode": "def printNodes(node, val=''): \n\t# huffman code for current node \n\tnewVal = val + str(node.huff) \n\t# if node is not an edge node \n\t# then traverse inside it \n\tif(node.left): \n\t\tprintNodes(node.left, newVal) \n\tif(node.right): \n\t\tprintNodes(node.right, newVal) \n\t\t# if node is edge node then ",
+        "detail": "Assignment 2.Assignement_2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\tself.freq",
+        "kind": 5,
+        "importPath": "Assignment 2.Assignement_2",
+        "description": "Assignment 2.Assignement_2",
+        "peekOfCode": "\t\tself.freq = freq \n\t\t# symbol name (character) \n\t\tself.symbol = symbol \n\t\t# node left of current node \n\t\tself.left = left \n\t\t# node right of current node \n\t\tself.right = right \n\t\t# tree direction (0/1) \n\t\tself.huff = '' \n\tdef __lt__(self, nxt): ",
+        "detail": "Assignment 2.Assignement_2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\tself.symbol",
+        "kind": 5,
+        "importPath": "Assignment 2.Assignement_2",
+        "description": "Assignment 2.Assignement_2",
+        "peekOfCode": "\t\tself.symbol = symbol \n\t\t# node left of current node \n\t\tself.left = left \n\t\t# node right of current node \n\t\tself.right = right \n\t\t# tree direction (0/1) \n\t\tself.huff = '' \n\tdef __lt__(self, nxt): \n\t\treturn self.freq < nxt.freq \n# utility function to print huffman ",
+        "detail": "Assignment 2.Assignement_2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\tself.left",
+        "kind": 5,
+        "importPath": "Assignment 2.Assignement_2",
+        "description": "Assignment 2.Assignement_2",
+        "peekOfCode": "\t\tself.left = left \n\t\t# node right of current node \n\t\tself.right = right \n\t\t# tree direction (0/1) \n\t\tself.huff = '' \n\tdef __lt__(self, nxt): \n\t\treturn self.freq < nxt.freq \n# utility function to print huffman \n# codes for all symbols in the newly \n# created Huffman tree ",
+        "detail": "Assignment 2.Assignement_2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\tself.right",
+        "kind": 5,
+        "importPath": "Assignment 2.Assignement_2",
+        "description": "Assignment 2.Assignement_2",
+        "peekOfCode": "\t\tself.right = right \n\t\t# tree direction (0/1) \n\t\tself.huff = '' \n\tdef __lt__(self, nxt): \n\t\treturn self.freq < nxt.freq \n# utility function to print huffman \n# codes for all symbols in the newly \n# created Huffman tree \ndef printNodes(node, val=''): \n\t# huffman code for current node ",
+        "detail": "Assignment 2.Assignement_2",
+        "documentation": {}
+    },
+    {
+        "label": "\t\tself.huff",
+        "kind": 5,
+        "importPath": "Assignment 2.Assignement_2",
+        "description": "Assignment 2.Assignement_2",
+        "peekOfCode": "\t\tself.huff = '' \n\tdef __lt__(self, nxt): \n\t\treturn self.freq < nxt.freq \n# utility function to print huffman \n# codes for all symbols in the newly \n# created Huffman tree \ndef printNodes(node, val=''): \n\t# huffman code for current node \n\tnewVal = val + str(node.huff) \n\t# if node is not an edge node ",
+        "detail": "Assignment 2.Assignement_2",
+        "documentation": {}
+    },
+    {
+        "label": "\tnewVal",
+        "kind": 5,
+        "importPath": "Assignment 2.Assignement_2",
+        "description": "Assignment 2.Assignement_2",
+        "peekOfCode": "\tnewVal = val + str(node.huff) \n\t# if node is not an edge node \n\t# then traverse inside it \n\tif(node.left): \n\t\tprintNodes(node.left, newVal) \n\tif(node.right): \n\t\tprintNodes(node.right, newVal) \n\t\t# if node is edge node then \n\t\t# display its huffman code \n\tif(not node.left and not node.right): ",
+        "detail": "Assignment 2.Assignement_2",
+        "documentation": {}
+    },
+    {
+        "label": "chars",
+        "kind": 5,
+        "importPath": "Assignment 2.Assignement_2",
+        "description": "Assignment 2.Assignement_2",
+        "peekOfCode": "chars = ['a', 'b', 'c', 'd', 'e', 'f'] \n# frequency of characters \nfreq = [5, 9, 12, 13, 16, 45] \n# list containing unused nodes \nnodes = [] \n# converting characters and frequencies \n# into huffman tree nodes \nfor x in range(len(chars)): \n\theapq.heappush(nodes, node(freq[x], chars[x])) \nwhile len(nodes) > 1: ",
+        "detail": "Assignment 2.Assignement_2",
+        "documentation": {}
+    },
+    {
+        "label": "freq",
+        "kind": 5,
+        "importPath": "Assignment 2.Assignement_2",
+        "description": "Assignment 2.Assignement_2",
+        "peekOfCode": "freq = [5, 9, 12, 13, 16, 45] \n# list containing unused nodes \nnodes = [] \n# converting characters and frequencies \n# into huffman tree nodes \nfor x in range(len(chars)): \n\theapq.heappush(nodes, node(freq[x], chars[x])) \nwhile len(nodes) > 1: \n\t# sort all the nodes in ascending order \n\t# based on their frequency ",
+        "detail": "Assignment 2.Assignement_2",
+        "documentation": {}
+    },
+    {
+        "label": "nodes",
+        "kind": 5,
+        "importPath": "Assignment 2.Assignement_2",
+        "description": "Assignment 2.Assignement_2",
+        "peekOfCode": "nodes = [] \n# converting characters and frequencies \n# into huffman tree nodes \nfor x in range(len(chars)): \n\theapq.heappush(nodes, node(freq[x], chars[x])) \nwhile len(nodes) > 1: \n\t# sort all the nodes in ascending order \n\t# based on their frequency \n\tleft = heapq.heappop(nodes) \n\tright = heapq.heappop(nodes) ",
+        "detail": "Assignment 2.Assignement_2",
+        "documentation": {}
+    },
+    {
+        "label": "\tleft",
+        "kind": 5,
+        "importPath": "Assignment 2.Assignement_2",
+        "description": "Assignment 2.Assignement_2",
+        "peekOfCode": "\tleft = heapq.heappop(nodes) \n\tright = heapq.heappop(nodes) \n\t# assign directional value to these nodes \n\tleft.huff = 0\n\tright.huff = 1\n\t# combine the 2 smallest nodes to create \n\t# new node as their parent \n\tnewNode = node(left.freq+right.freq, left.symbol+right.symbol, left, right) \n\theapq.heappush(nodes, newNode) \n# Huffman Tree is ready! ",
+        "detail": "Assignment 2.Assignement_2",
+        "documentation": {}
+    },
+    {
+        "label": "\tright",
+        "kind": 5,
+        "importPath": "Assignment 2.Assignement_2",
+        "description": "Assignment 2.Assignement_2",
+        "peekOfCode": "\tright = heapq.heappop(nodes) \n\t# assign directional value to these nodes \n\tleft.huff = 0\n\tright.huff = 1\n\t# combine the 2 smallest nodes to create \n\t# new node as their parent \n\tnewNode = node(left.freq+right.freq, left.symbol+right.symbol, left, right) \n\theapq.heappush(nodes, newNode) \n# Huffman Tree is ready! \nprintNodes(nodes[0])",
+        "detail": "Assignment 2.Assignement_2",
+        "documentation": {}
+    },
+    {
+        "label": "\tleft.huff",
+        "kind": 5,
+        "importPath": "Assignment 2.Assignement_2",
+        "description": "Assignment 2.Assignement_2",
+        "peekOfCode": "\tleft.huff = 0\n\tright.huff = 1\n\t# combine the 2 smallest nodes to create \n\t# new node as their parent \n\tnewNode = node(left.freq+right.freq, left.symbol+right.symbol, left, right) \n\theapq.heappush(nodes, newNode) \n# Huffman Tree is ready! \nprintNodes(nodes[0])",
+        "detail": "Assignment 2.Assignement_2",
+        "documentation": {}
+    },
+    {
+        "label": "\tright.huff",
+        "kind": 5,
+        "importPath": "Assignment 2.Assignement_2",
+        "description": "Assignment 2.Assignement_2",
+        "peekOfCode": "\tright.huff = 1\n\t# combine the 2 smallest nodes to create \n\t# new node as their parent \n\tnewNode = node(left.freq+right.freq, left.symbol+right.symbol, left, right) \n\theapq.heappush(nodes, newNode) \n# Huffman Tree is ready! \nprintNodes(nodes[0])",
+        "detail": "Assignment 2.Assignement_2",
+        "documentation": {}
+    },
+    {
+        "label": "\tnewNode",
+        "kind": 5,
+        "importPath": "Assignment 2.Assignement_2",
+        "description": "Assignment 2.Assignement_2",
+        "peekOfCode": "\tnewNode = node(left.freq+right.freq, left.symbol+right.symbol, left, right) \n\theapq.heappush(nodes, newNode) \n# Huffman Tree is ready! \nprintNodes(nodes[0])",
+        "detail": "Assignment 2.Assignement_2",
+        "documentation": {}
+    }
+]
