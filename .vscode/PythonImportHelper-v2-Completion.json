@@ -9,6 +9,33 @@
         "documentation": {}
     },
     {
+        "label": "fib_iterative",
+        "kind": 2,
+        "importPath": "Assignment 1.A1",
+        "description": "Assignment 1.A1",
+        "peekOfCode": "def fib_iterative(n):\n    step_count = 0 \n    series = [0, 1]\n    if n <= 0:\n        return \"Please enter a positive integer.\", step_count\n    elif n == 1:\n        step_count += 1  \n        return [0], step_count\n    elif n == 2:\n        step_count += 1 ",
+        "detail": "Assignment 1.A1",
+        "documentation": {}
+    },
+    {
+        "label": "fib_recursive_series",
+        "kind": 2,
+        "importPath": "Assignment 1.A1",
+        "description": "Assignment 1.A1",
+        "peekOfCode": "def fib_recursive_series(n, series=None, step_count=0):\n    if n <= 0:\n        return \"Please enter a positive integer.\", step_count\n    elif n == 1:\n        step_count += 1 \n        return [0], step_count\n    elif n == 2:\n        step_count += 1  \n        return [0, 1], step_count\n    if series is None:",
+        "detail": "Assignment 1.A1",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "Assignment 1.A1",
+        "description": "Assignment 1.A1",
+        "peekOfCode": "def main():\n    while True:\n        print(\"\\n Menu:\")\n        print(\"1. Fibonacci Series using Iterative approach\")\n        print(\"2. Fibonacci Series using Recursive approach\")\n        print(\"3. Exit\")\n        choice = int(input(\"Choose an option : \"))\n        if choice == 1 or choice == 2:\n            n = int(input(\"Enter the number of terms (n): \"))\n            if choice == 1:",
+        "detail": "Assignment 1.A1",
+        "documentation": {}
+    },
+    {
         "label": "COUNT",
         "kind": 5,
         "importPath": "Assignment 1.Fibbo-iterative",
@@ -177,6 +204,33 @@
         "description": "Assignment 2.Assignement_2",
         "peekOfCode": "\tnewNode = node(left.freq+right.freq, left.symbol+right.symbol, left, right) \n\theapq.heappush(nodes, newNode) \n# Huffman Tree is ready! \nprintNodes(nodes[0])",
         "detail": "Assignment 2.Assignement_2",
+        "documentation": {}
+    },
+    {
+        "label": "fib_iterative",
+        "kind": 2,
+        "importPath": "prac.A1C",
+        "description": "prac.A1C",
+        "peekOfCode": "def fib_iterative(n):\n    sc = 0\n    series = [0,1]\n    if n<=0:\n        return \"Please Enter valid input.\", sc\n    elif n==1:\n        sc += 1\n        return [0], sc\n    elif n==2:\n        sc += 1",
+        "detail": "prac.A1C",
+        "documentation": {}
+    },
+    {
+        "label": "fib_recursive",
+        "kind": 2,
+        "importPath": "prac.A1C",
+        "description": "prac.A1C",
+        "peekOfCode": "def fib_recursive(n, series=None, sc=0):\n    if n<=0:\n        return \"Please Enter the valid input.\", sc\n    elif n==1:\n        sc += 1\n        return [0], sc\n    elif n==2:\n        sc += 1\n        return [0, 1], sc\n    if series == None:",
+        "detail": "prac.A1C",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "prac.A1C",
+        "description": "prac.A1C",
+        "peekOfCode": "def main():\n    while(True):\n        print(\"1. Fibonacci series using iterative approach.\")\n        print(\"2. Fibonacci series using recursive approach.\")\n        print(\"3. Exit\")\n        ch = int(input(\"Choose an option : \"))\n        if ch==1:\n            in1 = int(input(\"Enter the number of elements : \"))\n            series, sc = fib_iterative(in1)\n            print(f\"Fibonacci series : {series}\")",
+        "detail": "prac.A1C",
         "documentation": {}
     }
 ]
