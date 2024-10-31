@@ -75,7 +75,6 @@ public class Randomized_Quick_Sort {
         System.out.println("\nOriginal Sequence: ");
         printSequence(sequence);
 
-        // Sorting sequence
         System.out.println("\nSorting in progress...");
         QuickSort(0, N - 1);
 

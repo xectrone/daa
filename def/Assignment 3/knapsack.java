@@ -1,7 +1,4 @@
-// link https://www.geeksforgeeks.org/0-1-knapsack-using-least-count-branch-and-bound/
-// Java Program to implement
-// 0/1 knapsack using LC
-// Branch and Bound
+
 
 import java.util.*;
 
@@ -275,7 +272,6 @@ class knapsack {
 				+ " is " + (-finalLB));
 	}
 
-	// Driver code
 	public static void main(String args[]) {
 		size = 4;
 		capacity = 15;

@@ -1,4 +1,4 @@
-# DAA A1 Write a program to calculate Fibonacci numbers and find its step count.
+#  Write a program non-recursive and recursive program to calculate Fibonacci numbers and analyze their time and space complexity.
 
 def fib_iterative(n):
     step_count = 0 

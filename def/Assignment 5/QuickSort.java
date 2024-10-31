@@ -129,3 +129,23 @@ public class QuickSort {
     }
 
 }
+/*
+Enter the size of the array
+5
+Enter array elements
+50
+40
+30
+20
+10
+The initial array is
+[50, 40, 30, 20, 10]
+[10, 20, 30, 40, 50]
+[10, 20, 30, 40, 50]
+[10, 20, 30, 40, 50]
+[10, 20, 30, 40, 50]
+[10, 20, 30, 40, 50]
+[10, 20, 30, 40, 50]
+The sorted array is
+[10, 20, 30, 40, 50]
+*/
