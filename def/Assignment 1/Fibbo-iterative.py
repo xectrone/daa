@@ -11,6 +11,7 @@ elif(x==0):
     print(0)
 elif(x==1):
     print("Fibbonacci series upto",x,"is",first)
+    
 else:
     while c<x:
         print(first) 

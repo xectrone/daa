@@ -198,20 +198,20 @@
         "documentation": {}
     },
     {
-        "label": "fib_iterative",
+        "label": "recur_fibo",
         "kind": 2,
         "importPath": "mod.A1",
         "description": "mod.A1",
-        "peekOfCode": "def fib_iterative(n):\n    step_count = 0 \n    series = [0, 1]\n    if n <= 0:\n        return \"Please enter a positive integer.\", step_count\n    elif n == 1:\n        step_count += 1  \n        return [0], step_count\n    elif n == 2:\n        step_count += 1 ",
+        "peekOfCode": "def recur_fibo(n):\n    global COUNT\n    COUNT += 1  \n    if n <= 1:\n        return n\n    else:\n        return recur_fibo(n - 1) + recur_fibo(n - 2)\ndef fib_iterative(n):\n    global COUNT\n    COUNT = 0",
         "detail": "mod.A1",
         "documentation": {}
     },
     {
-        "label": "fib_recursive_series",
+        "label": "fib_iterative",
         "kind": 2,
         "importPath": "mod.A1",
         "description": "mod.A1",
-        "peekOfCode": "def fib_recursive_series(n, series=None, step_count=0):\n    if n <= 0:\n        return \"Please enter a positive integer.\", step_count\n    elif n == 1:\n        step_count += 1 \n        return [0], step_count\n    elif n == 2:\n        step_count += 1  \n        return [0, 1], step_count\n    if series is None:",
+        "peekOfCode": "def fib_iterative(n):\n    global COUNT\n    COUNT = 0\n    first, sec = 0, 1\n    series = []\n    if n <= 0:\n        return \"Please enter a positive integer.\", COUNT\n    elif n == 1:\n        series = [0]\n        COUNT += 1  ",
         "detail": "mod.A1",
         "documentation": {}
     },
@@ -220,7 +220,16 @@
         "kind": 2,
         "importPath": "mod.A1",
         "description": "mod.A1",
-        "peekOfCode": "def main():\n    while True:\n        print(\"\\n Menu:\")\n        print(\"1. Fibonacci Series using Iterative approach\")\n        print(\"2. Fibonacci Series using Recursive approach\")\n        print(\"3. Exit\")\n        choice = int(input(\"Choose an option : \"))\n        if choice == 1 or choice == 2:\n            n = int(input(\"Enter the number of terms (n): \"))\n            if choice == 1:",
+        "peekOfCode": "def main():\n    while True:\n        global COUNT\n        print(\"\\nMenu:\")\n        print(\"1. Fibonacci Series using Iterative approach\")\n        print(\"2. Fibonacci Series using Recursive approach\")\n        print(\"3. Exit\")\n        choice = int(input(\"Enter your choice: \"))\n        if choice == 1 or choice == 2:\n            n = int(input(\"Enter the number of terms (n): \"))",
+        "detail": "mod.A1",
+        "documentation": {}
+    },
+    {
+        "label": "COUNT",
+        "kind": 5,
+        "importPath": "mod.A1",
+        "description": "mod.A1",
+        "peekOfCode": "COUNT = 0\ndef recur_fibo(n):\n    global COUNT\n    COUNT += 1  \n    if n <= 1:\n        return n\n    else:\n        return recur_fibo(n - 1) + recur_fibo(n - 2)\ndef fib_iterative(n):\n    global COUNT",
         "detail": "mod.A1",
         "documentation": {}
     },
@@ -274,7 +283,7 @@
         "kind": 2,
         "importPath": "mod.A3",
         "description": "mod.A3",
-        "peekOfCode": "def print_selected_items(dp, weights, values, capacity):\n    n = len(values)\n    w = capacity\n    selected_items = []\n    for i in range(n, 0, -1):\n        if dp[i][w] != dp[i - 1][w]:\n            selected_items.append(i - 1)\n            w -= weights[i - 1]\n    print(f\"Selected item indices: {selected_items[::-1]}\")\n    return selected_items",
+        "peekOfCode": "def print_selected_items(dp, weights, values, capacity):\n    n = len(values)\n    w = capacity\n    selected_items = []\n    for i in range(n, 0, -1):\n        if dp[i][w] != dp[i - 1][w]:\n            selected_items.append(i)\n            w -= weights[i - 1]\n    print(f\"Selected items : {selected_items[::-1]}\")\n    return selected_items",
         "detail": "mod.A3",
         "documentation": {}
     },
@@ -288,20 +297,29 @@
         "documentation": {}
     },
     {
-        "label": "QueenChessBoard",
-        "kind": 6,
+        "label": "is_safe",
+        "kind": 2,
         "importPath": "mod.A4",
         "description": "mod.A4",
-        "peekOfCode": "class QueenChessBoard:\n    def __init__(self, size):\n        self.size = size\n        self.columns = []\n    def place_in_next_row(self, column):\n        self.columns.append(column)\n    def remove_in_current_row(self):\n        return self.columns.pop()\n    def is_this_column_safe_in_next_row(self, column):\n        row = len(self.columns)",
+        "peekOfCode": "def is_safe(board, row, col, n):\n    for i in range(col):\n        if board[row][i] == 1:\n            return False\n    for i, j in zip(range(row, -1, -1), range(col, -1, -1)):\n        if board[i][j] == 1:\n            return False\n    for i, j in zip(range(row, n), range(col, -1, -1)):\n        if board[i][j] == 1:\n            return False",
         "detail": "mod.A4",
         "documentation": {}
     },
     {
-        "label": "solve_queen",
+        "label": "solve_n_queens_util",
         "kind": 2,
         "importPath": "mod.A4",
         "description": "mod.A4",
-        "peekOfCode": "def solve_queen(size):\n    board = QueenChessBoard(size)\n    number_of_solutions = 0\n    row = 0\n    column = 0\n    while True:\n        while column < size:\n            if board.is_this_column_safe_in_next_row(column):\n                board.place_in_next_row(column)\n                row += 1",
+        "peekOfCode": "def solve_n_queens_util(board, col, n):\n    if col >= n:\n        return True  \n    for i in range(n):\n        if is_safe(board, i, col, n):\n            board[i][col] = 1\n            if solve_n_queens_util(board, col + 1, n):\n                return True\n            board[i][col] = 0\n    return False",
+        "detail": "mod.A4",
+        "documentation": {}
+    },
+    {
+        "label": "generate_n_queens_with_first_queen",
+        "kind": 2,
+        "importPath": "mod.A4",
+        "description": "mod.A4",
+        "peekOfCode": "def generate_n_queens_with_first_queen(n, first_queen_position):\n    board = [[0 for _ in range(n)] for _ in range(n)]\n    row, col = first_queen_position\n    board[row][col] = 1\n    if solve_n_queens_util(board, col + 1, n):\n        return board\n    else:\n        return None\nn = 4\nfirst_queen_position = (0, 1)",
         "detail": "mod.A4",
         "documentation": {}
     },
@@ -310,7 +328,25 @@
         "kind": 5,
         "importPath": "mod.A4",
         "description": "mod.A4",
-        "peekOfCode": "n = int(input('Enter n: '))\nsolve_queen(n)",
+        "peekOfCode": "n = 4\nfirst_queen_position = (0, 1)\nresult = generate_n_queens_with_first_queen(n, first_queen_position)\nif result:\n    for row in result:\n        print(row)\nelse:\n    print(\"No solution exists\")",
+        "detail": "mod.A4",
+        "documentation": {}
+    },
+    {
+        "label": "first_queen_position",
+        "kind": 5,
+        "importPath": "mod.A4",
+        "description": "mod.A4",
+        "peekOfCode": "first_queen_position = (0, 1)\nresult = generate_n_queens_with_first_queen(n, first_queen_position)\nif result:\n    for row in result:\n        print(row)\nelse:\n    print(\"No solution exists\")",
+        "detail": "mod.A4",
+        "documentation": {}
+    },
+    {
+        "label": "result",
+        "kind": 5,
+        "importPath": "mod.A4",
+        "description": "mod.A4",
+        "peekOfCode": "result = generate_n_queens_with_first_queen(n, first_queen_position)\nif result:\n    for row in result:\n        print(row)\nelse:\n    print(\"No solution exists\")",
         "detail": "mod.A4",
         "documentation": {}
     },
@@ -360,6 +396,69 @@
         "documentation": {}
     },
     {
+        "label": "recur_fibo",
+        "kind": 2,
+        "importPath": "prac.A1-1",
+        "description": "prac.A1-1",
+        "peekOfCode": "def recur_fibo(n):\n    global COUNT\n    COUNT += 1  \n    if n <= 1:\n        return n\n    else:\n        return recur_fibo(n - 1) + recur_fibo(n - 2)\ndef fib_iterative(n):\n    global COUNT\n    COUNT = 0",
+        "detail": "prac.A1-1",
+        "documentation": {}
+    },
+    {
+        "label": "fib_iterative",
+        "kind": 2,
+        "importPath": "prac.A1-1",
+        "description": "prac.A1-1",
+        "peekOfCode": "def fib_iterative(n):\n    global COUNT\n    COUNT = 0\n    first, sec = 0, 1\n    series = []\n    if n <= 0:\n        return \"Please enter a positive integer.\", COUNT\n    elif n == 1:\n        series = [0]\n        COUNT += 1  ",
+        "detail": "prac.A1-1",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "prac.A1-1",
+        "description": "prac.A1-1",
+        "peekOfCode": "def main():\n    while True:\n        global COUNT\n        print(\"\\nMenu:\")\n        print(\"1. Fibonacci Series using Iterative approach\")\n        print(\"2. Fibonacci Series using Recursive approach\")\n        print(\"3. Exit\")\n        choice = int(input(\"Enter your choice: \"))\n        if choice == 1 or choice == 2:\n            n = int(input(\"Enter the number of terms (n): \"))",
+        "detail": "prac.A1-1",
+        "documentation": {}
+    },
+    {
+        "label": "COUNT",
+        "kind": 5,
+        "importPath": "prac.A1-1",
+        "description": "prac.A1-1",
+        "peekOfCode": "COUNT = 0\ndef recur_fibo(n):\n    global COUNT\n    COUNT += 1  \n    if n <= 1:\n        return n\n    else:\n        return recur_fibo(n - 1) + recur_fibo(n - 2)\ndef fib_iterative(n):\n    global COUNT",
+        "detail": "prac.A1-1",
+        "documentation": {}
+    },
+    {
+        "label": "fib_iterative",
+        "kind": 2,
+        "importPath": "prac.A1",
+        "description": "prac.A1",
+        "peekOfCode": "def fib_iterative(n):\n    step_count = 0 \n    series = [0, 1]\n    if n <= 0:\n        return \"Please enter a positive integer.\", step_count\n    elif n == 1:\n        step_count += 1  \n        return [0], step_count\n    elif n == 2:\n        step_count += 1 ",
+        "detail": "prac.A1",
+        "documentation": {}
+    },
+    {
+        "label": "fib_recursive_series",
+        "kind": 2,
+        "importPath": "prac.A1",
+        "description": "prac.A1",
+        "peekOfCode": "def fib_recursive_series(n, series=None, step_count=0):\n    if n <= 0:\n        return \"Please enter a positive integer.\", step_count\n    elif n == 1:\n        step_count += 1 \n        return [0], step_count\n    elif n == 2:\n        step_count += 1  \n        return [0, 1], step_count\n    if series is None:",
+        "detail": "prac.A1",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "prac.A1",
+        "description": "prac.A1",
+        "peekOfCode": "def main():\n    while True:\n        print(\"\\n Menu:\")\n        print(\"1. Fibonacci Series using Iterative approach\")\n        print(\"2. Fibonacci Series using Recursive approach\")\n        print(\"3. Exit\")\n        choice = int(input(\"Choose an option : \"))\n        if choice == 1 or choice == 2:\n            n = int(input(\"Enter the number of terms (n): \"))\n            if choice == 1:",
+        "detail": "prac.A1",
+        "documentation": {}
+    },
+    {
         "label": "fib_iterative",
         "kind": 2,
         "importPath": "prac.A1C",
@@ -384,6 +483,33 @@
         "description": "prac.A1C",
         "peekOfCode": "def main():\n    while(True):\n        print(\"1. Fibonacci series using iterative approach.\")\n        print(\"2. Fibonacci series using recursive approach.\")\n        print(\"3. Exit\")\n        ch = int(input(\"Choose an option : \"))\n        if ch==1:\n            in1 = int(input(\"Enter the number of elements : \"))\n            series, sc = fib_iterative(in1)\n            print(f\"Fibonacci series : {series}\")",
         "detail": "prac.A1C",
+        "documentation": {}
+    },
+    {
+        "label": "fib_iterative",
+        "kind": 2,
+        "importPath": "prac.A1C2",
+        "description": "prac.A1C2",
+        "peekOfCode": "def fib_iterative(n):\n    series = [0, 1]\n    step_count = 0\n    if n <= 0:\n        return \"Please Enter the Valid Number\", step_count\n    elif n == 1:\n        step_count += 1\n        return [0], step_count\n    elif n == 2:\n        step_count += 1",
+        "detail": "prac.A1C2",
+        "documentation": {}
+    },
+    {
+        "label": "fib_recursive",
+        "kind": 2,
+        "importPath": "prac.A1C2",
+        "description": "prac.A1C2",
+        "peekOfCode": "def fib_recursive(n, series=None, step_count = 0):\n    if n <= 0:\n        return \"Please Enter the Valid Number\", step_count\n    elif n == 1:\n        step_count += 1\n        return [0], step_count\n    elif n == 2:\n        step_count += 1\n        return [0, 1], step_count\n    if series==None:",
+        "detail": "prac.A1C2",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "prac.A1C2",
+        "description": "prac.A1C2",
+        "peekOfCode": "def main():\n    while True:\n        print(\"\\n Menu:\")\n        print(\"1. Fibonacci Series using Iterative approach\")\n        print(\"2. Fibonacci Series using Recursive approach\")\n        print(\"3. Exit\")\n        choice = int(input(\"Choose an option : \"))\n        if choice == 1 or choice == 2:\n            n = int(input(\"Enter the number of terms (n): \"))\n            if choice == 1:",
+        "detail": "prac.A1C2",
         "documentation": {}
     },
     {
@@ -465,6 +591,411 @@
         "description": "prac.A2C1",
         "peekOfCode": "freq = [5, 9, 12, 13, 16, 45] \nhuff_enc(symbols, freq)",
         "detail": "prac.A2C1",
+        "documentation": {}
+    },
+    {
+        "label": "Node",
+        "kind": 6,
+        "importPath": "prac.A2C2",
+        "description": "prac.A2C2",
+        "peekOfCode": "class Node:\n    def __init__(self, freq, symbol, left=None, right=None):\n        self.freq = freq\n        self.symbol = symbol\n        self.left = left\n        self.right = right  \n        self.huff = ''\n    def __lt__(self, next):\n        return self.freq < next.freq\ndef printNodes(node, val=''):",
+        "detail": "prac.A2C2",
+        "documentation": {}
+    },
+    {
+        "label": "printNodes",
+        "kind": 2,
+        "importPath": "prac.A2C2",
+        "description": "prac.A2C2",
+        "peekOfCode": "def printNodes(node, val=''):\n    newVal = val+str(node.huff)\n    if node.left:\n        printNodes(node.left, newVal)\n    if node.right:\n        printNodes(node.right, newVal)\n    if not node.left and not node.right:\n        print(f\"{node.symbol} -> {newVal}\")\ndef huff_enc(symbol, freq):\n    nodes = []",
+        "detail": "prac.A2C2",
+        "documentation": {}
+    },
+    {
+        "label": "huff_enc",
+        "kind": 2,
+        "importPath": "prac.A2C2",
+        "description": "prac.A2C2",
+        "peekOfCode": "def huff_enc(symbol, freq):\n    nodes = []\n    for i in range(len(symbol)):\n        heapq.heappush(nodes, Node(freq[i], symbol[i]))\n    while len(nodes)>1:\n        left = heapq.heappop(nodes)\n        right = heapq.heappop(nodes)\n        left.huff = 0\n        right.huff = 1\n        newNode = Node(left.freq+right.freq, left.symbol+right.symbol, left, right)",
+        "detail": "prac.A2C2",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "prac.A2C2",
+        "description": "prac.A2C2",
+        "peekOfCode": "def main():\n    num = int(input(\"Enter the number of characters: \"))\n    chars = ['a', 'b', 'c', 'd', 'e', 'f'] \n    freq = [5, 9, 12, 13, 16, 45] \n    huff_enc(chars, freq)\nif __name__ == \"__main__\":\n    main()",
+        "detail": "prac.A2C2",
+        "documentation": {}
+    },
+    {
+        "label": "knapsack_dp",
+        "kind": 2,
+        "importPath": "prac.A3C",
+        "description": "prac.A3C",
+        "peekOfCode": "def knapsack_dp( weights, values, capacity):\n    n = len(values)\n    dp = [[0 for w in range(capacity + 1)] for i in range(n+1)]\n    for i in range(1, n+1):\n        for w in range(1, capacity +1):\n            if weights[i - 1] <= w:\n                dp[i][w] = max(dp[i-1][w], dp[i-1][w - weights[i-1]] + values[i-1])\n            else:\n                dp[i][w] = dp[i-1][w]\n    return dp, dp[n][capacity]",
+        "detail": "prac.A3C",
+        "documentation": {}
+    },
+    {
+        "label": "print_selected_items",
+        "kind": 2,
+        "importPath": "prac.A3C",
+        "description": "prac.A3C",
+        "peekOfCode": "def print_selected_items(dp, values, capacity, weights):\n    n = len(values)\n    w = capacity\n    selected = []\n    for i in range(n, 0, -1):\n        if dp[i][w] != dp[i-1][w]:\n            selected.append(i)\n            w -= weights[i-1]\n    print(f\"Selected Items are : {selected[::-1]}\")\n    return selected",
+        "detail": "prac.A3C",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "prac.A3C",
+        "description": "prac.A3C",
+        "peekOfCode": "def main():\n    n = int(input(\"Enter No. of items : \"))\n    capacity = int(input(\"Enter Capacity : \"))\n    weights = [2,4,6,9]\n    values = [10,10,12,18]\n    # for i in range(n):\n    #     w = int(input(f\"Enter the weight of the {i+1}th item : \"))\n    #     v = int(input(f\"Enter the value of the {i+1}th item : \"))\n    #     weights.append(w)\n    #     values.append(v)",
+        "detail": "prac.A3C",
+        "documentation": {}
+    },
+    {
+        "label": "knapscak_dp",
+        "kind": 2,
+        "importPath": "prac.A3C1",
+        "description": "prac.A3C1",
+        "peekOfCode": "def knapscak_dp(weights, values, capacity):\n    n = len(values)\n    dp = [[0 for w in range(capacity + 1)] for i in range(n+1)]\n    for i in range(1, n+1):\n        for w in range(1, capacity +1):\n            if weights[i-1] <= w:\n                dp[i][w] = max(dp[i-1][w], dp[i-1][w - weights[i-1]]+values[i-1])\n            else:\n                dp[i][w] = dp[i-1][w]\n    return dp, dp[n][capacity]",
+        "detail": "prac.A3C1",
+        "documentation": {}
+    },
+    {
+        "label": "print_Selected_items",
+        "kind": 2,
+        "importPath": "prac.A3C1",
+        "description": "prac.A3C1",
+        "peekOfCode": "def print_Selected_items(dp, weights, values, capacity):\n    n = len(values)\n    w = capacity\n    selected = []\n    for i in range(n, 0, -1):\n        if dp[i][w] != dp[i-1][w]:\n            selected.append(i)\n            w -=weights[i-1]\n    print(f\"Selected Items are : {selected[::-1]}\")\n    return selected",
+        "detail": "prac.A3C1",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "prac.A3C1",
+        "description": "prac.A3C1",
+        "peekOfCode": "def main():\n    n = int(input(\"Enter the no. of items : \"))\n    capacity = int(input(\"Enter the capacity of knapsack :\"))\n    weights = [2,4,6,9]\n    values = [10,10,12,18]\n    dp, max = knapscak_dp(weights, values, capacity)\n    print_Selected_items(dp, weights, values, capacity)\n    print(max)\nif __name__==\"__main__\":\n    main()",
+        "detail": "prac.A3C1",
+        "documentation": {}
+    },
+    {
+        "label": "knapsack",
+        "kind": 2,
+        "importPath": "prac.A3C2",
+        "description": "prac.A3C2",
+        "peekOfCode": "def knapsack(values, weights, capacity):\n    n = len(values)\n    dp = [[0 for w in range(n + 1)] for i in range(capacity + 1)]\n    for i in range(1, n+1):\n        for w in range(1, capacity + 1):\n            if weights[i] <= w:\n                dp[i][w] = max(dp[i-1][w], dp[i-1][w - weights[i-1]+ values[i-1]])\n            else:\n                dp[i][w] = dp[i-1][w]",
+        "detail": "prac.A3C2",
+        "documentation": {}
+    },
+    {
+        "label": "Board",
+        "kind": 6,
+        "importPath": "prac.A4C",
+        "description": "prac.A4C",
+        "peekOfCode": "class Board():\n    def __init__(self,size):\n        self.size = size\n        self.columns = []\n    def place_in_next_row(self, column):\n        self.columns.append(column)\n    def remove_in_current_row(self):\n        return self.columns.pop()\n    def is_column_safe_in_next_row(self, column):\n        row = len(self.columns)",
+        "detail": "prac.A4C",
+        "documentation": {}
+    },
+    {
+        "label": "solve_queen",
+        "kind": 2,
+        "importPath": "prac.A4C",
+        "description": "prac.A4C",
+        "peekOfCode": "def solve_queen(size):\n    board = Board(size)    \n    no_sol = 0\n    row = 0\n    column = 0\n    while True:\n        while column < size:\n            if board.is_column_safe_in_next_row(column):\n                board.place_in_next_row(column)\n                row += 1",
+        "detail": "prac.A4C",
+        "documentation": {}
+    },
+    {
+        "label": "n",
+        "kind": 5,
+        "importPath": "prac.A4C",
+        "description": "prac.A4C",
+        "peekOfCode": "n = 4\nsolve_queen(n)",
+        "detail": "prac.A4C",
+        "documentation": {}
+    },
+    {
+        "label": "Board",
+        "kind": 6,
+        "importPath": "prac.A4C1",
+        "description": "prac.A4C1",
+        "peekOfCode": "class Board:\n    def __init__(self, size):\n        self.size = size\n        self.columns = []\n    def place_in_next_row(self, column):\n        self.columns.append(column)\n    def remove_form_current_row(self):\n        return self.columns.pop()\n    def is_col_safe_for_next_row(self, column):\n        row = len(self.columns)",
+        "detail": "prac.A4C1",
+        "documentation": {}
+    },
+    {
+        "label": "solve_queen",
+        "kind": 2,
+        "importPath": "prac.A4C1",
+        "description": "prac.A4C1",
+        "peekOfCode": "def solve_queen(size):\n    board = Board(size)\n    row = 0\n    col = 0\n    nsol = 0\n    while True:\n        while col<size:\n            if board.is_col_safe_for_next_row(col):\n                board.place_in_next_row(col)\n                row += 1",
+        "detail": "prac.A4C1",
+        "documentation": {}
+    },
+    {
+        "label": "partition_deterministic",
+        "kind": 2,
+        "importPath": "prac.A5",
+        "description": "prac.A5",
+        "peekOfCode": "def partition_deterministic( arr,low, high ):\n    pivot = arr[high]\n    i = low  -1\n    swap = 0\n    for j in (low, high):\n        if arr[j] <= pivot:\n            arr[i], arr[j] = arr[j], arr[i]\n            i += 1\n            swap =+ 1\n    arr[i+1], arr[high] = arr[high], arr[i+1]",
+        "detail": "prac.A5",
+        "documentation": {}
+    },
+    {
+        "label": "quickSort",
+        "kind": 2,
+        "importPath": "prac.A5",
+        "description": "prac.A5",
+        "peekOfCode": "def quickSort(arr, low, high):\n    swap_count = 0\n    if low < high:\n        pi, swap = partition_deterministic(arr, low, high)\n        swap_count += swap\n        swap_count += partition_deterministic(arr, low, pi-1)\n        swap_count += partition_deterministic(arr, pi+1 , high)\n    return swap_count",
+        "detail": "prac.A5",
+        "documentation": {}
+    },
+    {
+        "label": "partition_deterministic",
+        "kind": 2,
+        "importPath": "prac.A5C1",
+        "description": "prac.A5C1",
+        "peekOfCode": "def partition_deterministic(arr, low, high):\n    pivot = arr[high]\n    i = low -1\n    sc = 0\n    for j in range(low, high):\n        if arr[j] <= pivot:\n            i += 1\n            arr[i], arr[j] = arr[j], arr[i]\n            sc += 1\n    arr[i+1], arr[high] = arr[high], arr[i+1]",
+        "detail": "prac.A5C1",
+        "documentation": {}
+    },
+    {
+        "label": "quicksort_deterministic",
+        "kind": 2,
+        "importPath": "prac.A5C1",
+        "description": "prac.A5C1",
+        "peekOfCode": "def quicksort_deterministic(arr, low, high):\n    sc = 0\n    if low<high:\n        pi, swap = partition_deterministic(arr, low, high)\n        sc += swap\n        sc += quicksort_deterministic(arr, low, pi-1)\n        sc += quicksort_deterministic(arr, pi+1, high)\n    return sc \ndef partition_randomize(arr, low, high):\n    pivot = random.randint(low, high)",
+        "detail": "prac.A5C1",
+        "documentation": {}
+    },
+    {
+        "label": "partition_randomize",
+        "kind": 2,
+        "importPath": "prac.A5C1",
+        "description": "prac.A5C1",
+        "peekOfCode": "def partition_randomize(arr, low, high):\n    pivot = random.randint(low, high)\n    arr[pivot], arr[high] = arr[high], arr[pivot]\n    return  partition_deterministic(arr, low, high)\ndef quicksort_randomized(arr, low, high):\n    sc = 0\n    if low<high:\n        pi, swap = partition_randomize(arr, low, high)\n        sc += swap\n        sc += quicksort_randomized(arr, low, pi-1)",
+        "detail": "prac.A5C1",
+        "documentation": {}
+    },
+    {
+        "label": "quicksort_randomized",
+        "kind": 2,
+        "importPath": "prac.A5C1",
+        "description": "prac.A5C1",
+        "peekOfCode": "def quicksort_randomized(arr, low, high):\n    sc = 0\n    if low<high:\n        pi, swap = partition_randomize(arr, low, high)\n        sc += swap\n        sc += quicksort_randomized(arr, low, pi-1)\n        sc += quicksort_randomized(arr, pi+1, high)\n    return sc\ndef main():\n    n = 9",
+        "detail": "prac.A5C1",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "prac.A5C1",
+        "description": "prac.A5C1",
+        "peekOfCode": "def main():\n    n = 9\n    arr = [random.randint(0, 1000) for i in range(n)]\n    detarr = arr.copy()\n    ranarr = arr.copy()\n    start = time.time()\n    detswap = quicksort_deterministic(detarr, 0, n-1)\n    end = time.time()\n    print(f\"Sorted arr : {detarr}\")\n    print(f\"Time : {end - start :.6f} sec\")",
+        "detail": "prac.A5C1",
+        "documentation": {}
+    },
+    {
+        "label": "recur_fibo",
+        "kind": 2,
+        "importPath": "A1",
+        "description": "A1",
+        "peekOfCode": "def recur_fibo(n):\n    global COUNT\n    COUNT += 1  \n    if n <= 1:\n        return n\n    else:\n        return recur_fibo(n - 1) + recur_fibo(n - 2)\ndef fib_iterative(n):\n    global COUNT\n    COUNT = 0",
+        "detail": "A1",
+        "documentation": {}
+    },
+    {
+        "label": "fib_iterative",
+        "kind": 2,
+        "importPath": "A1",
+        "description": "A1",
+        "peekOfCode": "def fib_iterative(n):\n    global COUNT\n    COUNT = 0\n    first, sec = 0, 1\n    series = []\n    if n <= 0:\n        return \"Please enter a positive integer.\", COUNT\n    elif n == 1:\n        series = [0]\n        COUNT += 1  ",
+        "detail": "A1",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "A1",
+        "description": "A1",
+        "peekOfCode": "def main():\n    while True:\n        global COUNT\n        print(\"\\nMenu:\")\n        print(\"1. Fibonacci Series using Iterative approach\")\n        print(\"2. Fibonacci Series using Recursive approach\")\n        print(\"3. Exit\")\n        choice = int(input(\"Enter your choice: \"))\n        if choice == 1 or choice == 2:\n            n = int(input(\"Enter the number of terms (n): \"))",
+        "detail": "A1",
+        "documentation": {}
+    },
+    {
+        "label": "COUNT",
+        "kind": 5,
+        "importPath": "A1",
+        "description": "A1",
+        "peekOfCode": "COUNT = 0\ndef recur_fibo(n):\n    global COUNT\n    COUNT += 1  \n    if n <= 1:\n        return n\n    else:\n        return recur_fibo(n - 1) + recur_fibo(n - 2)\ndef fib_iterative(n):\n    global COUNT",
+        "detail": "A1",
+        "documentation": {}
+    },
+    {
+        "label": "Node",
+        "kind": 6,
+        "importPath": "A2",
+        "description": "A2",
+        "peekOfCode": "class Node:\n    def __init__(self, freq, symbol, left=None, right=None):\n        self.freq = freq\n        self.symbol = symbol\n        self.left = left\n        self.right = right\n        self.huff = ''\n    def __lt__(self, nxt):\n        return self.freq < nxt.freq\ndef printNodes(node, val=''):",
+        "detail": "A2",
+        "documentation": {}
+    },
+    {
+        "label": "printNodes",
+        "kind": 2,
+        "importPath": "A2",
+        "description": "A2",
+        "peekOfCode": "def printNodes(node, val=''):\n    newVal = val + str(node.huff)\n    if node.left:\n        printNodes(node.left, newVal)\n    if node.right:\n        printNodes(node.right, newVal)\n    if not node.left and not node.right:\n        print(f\"{node.symbol} -> {newVal}\")\ndef huffman_encoding(chars, freq):\n    nodes = []",
+        "detail": "A2",
+        "documentation": {}
+    },
+    {
+        "label": "huffman_encoding",
+        "kind": 2,
+        "importPath": "A2",
+        "description": "A2",
+        "peekOfCode": "def huffman_encoding(chars, freq):\n    nodes = []\n    for x in range(len(chars)):\n        heapq.heappush(nodes, Node(freq[x], chars[x]))\n    while len(nodes) > 1:\n        left = heapq.heappop(nodes)\n        right = heapq.heappop(nodes)\n        left.huff = 0\n        right.huff = 1\n        newNode = Node(left.freq + right.freq, left.symbol + right.symbol, left, right)",
+        "detail": "A2",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "A2",
+        "description": "A2",
+        "peekOfCode": "def main():\n    num = int(input(\"Enter the number of characters: \"))\n    chars = []\n    freq = []\n    for i in range(num):\n        char = input(f\"Enter character {i+1}: \")\n        frequency = int(input(f\"Enter frequency of '{char}': \"))\n        chars.append(char)\n        freq.append(frequency)\n    huffman_encoding(chars, freq)",
+        "detail": "A2",
+        "documentation": {}
+    },
+    {
+        "label": "knapsack_dp",
+        "kind": 2,
+        "importPath": "A3",
+        "description": "A3",
+        "peekOfCode": "def knapsack_dp(weights, values, capacity):\n    n = len(values)\n    dp = [[0 for w in range(capacity + 1)] for i in range(n + 1)]\n    for i in range(1, n + 1):\n        for w in range(1, capacity + 1):\n            if weights[i - 1] <= w:\n                dp[i][w] = max(dp[i - 1][w], dp[i - 1][w - weights[i - 1]] + values[i - 1])\n            else:\n                dp[i][w] = dp[i - 1][w]\n    return dp, dp[n][capacity]",
+        "detail": "A3",
+        "documentation": {}
+    },
+    {
+        "label": "print_selected_items",
+        "kind": 2,
+        "importPath": "A3",
+        "description": "A3",
+        "peekOfCode": "def print_selected_items(dp, weights, values, capacity):\n    n = len(values)\n    w = capacity\n    selected_items = []\n    for i in range(n, 0, -1):\n        if dp[i][w] != dp[i - 1][w]:\n            selected_items.append(i)\n            w -= weights[i - 1]\n    print(f\"Selected items : {selected_items[::-1]}\")\n    return selected_items",
+        "detail": "A3",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "A3",
+        "description": "A3",
+        "peekOfCode": "def main():\n    n = int(input(\"Enter number of items: \"))\n    weights = []\n    values = []\n    for i in range(n):\n        weight = int(input(f\"Enter weight of item {i+1}: \"))\n        value = int(input(f\"Enter value of item {i+1}: \"))\n        weights.append(weight)\n        values.append(value)\n    capacity = int(input(\"Enter capacity of knapsack: \"))",
+        "detail": "A3",
+        "documentation": {}
+    },
+    {
+        "label": "is_safe",
+        "kind": 2,
+        "importPath": "A4",
+        "description": "A4",
+        "peekOfCode": "def is_safe(board, row, col, n):\n    for i in range(col):\n        if board[row][i] == 1:\n            return False\n    for i, j in zip(range(row, -1, -1), range(col, -1, -1)):\n        if board[i][j] == 1:\n            return False\n    for i, j in zip(range(row, n), range(col, -1, -1)):\n        if board[i][j] == 1:\n            return False",
+        "detail": "A4",
+        "documentation": {}
+    },
+    {
+        "label": "solve_n_queens_util",
+        "kind": 2,
+        "importPath": "A4",
+        "description": "A4",
+        "peekOfCode": "def solve_n_queens_util(board, col, n):\n    if col >= n:\n        return True  \n    for i in range(n):\n        if is_safe(board, i, col, n):\n            board[i][col] = 1\n            if solve_n_queens_util(board, col + 1, n):\n                return True\n            board[i][col] = 0\n    return False",
+        "detail": "A4",
+        "documentation": {}
+    },
+    {
+        "label": "generate_n_queens_with_first_queen",
+        "kind": 2,
+        "importPath": "A4",
+        "description": "A4",
+        "peekOfCode": "def generate_n_queens_with_first_queen(n, first_queen_position):\n    board = [[0 for _ in range(n)] for _ in range(n)]\n    row, col = first_queen_position\n    board[row][col] = 1\n    if solve_n_queens_util(board, col + 1, n):\n        return board\n    else:\n        return None\nn = 4\nfirst_queen_position = (0, 1)",
+        "detail": "A4",
+        "documentation": {}
+    },
+    {
+        "label": "n",
+        "kind": 5,
+        "importPath": "A4",
+        "description": "A4",
+        "peekOfCode": "n = 4\nfirst_queen_position = (0, 1)\nresult = generate_n_queens_with_first_queen(n, first_queen_position)\nif result:\n    for row in result:\n        print(row)\nelse:\n    print(\"No solution exists\")",
+        "detail": "A4",
+        "documentation": {}
+    },
+    {
+        "label": "first_queen_position",
+        "kind": 5,
+        "importPath": "A4",
+        "description": "A4",
+        "peekOfCode": "first_queen_position = (0, 1)\nresult = generate_n_queens_with_first_queen(n, first_queen_position)\nif result:\n    for row in result:\n        print(row)\nelse:\n    print(\"No solution exists\")",
+        "detail": "A4",
+        "documentation": {}
+    },
+    {
+        "label": "result",
+        "kind": 5,
+        "importPath": "A4",
+        "description": "A4",
+        "peekOfCode": "result = generate_n_queens_with_first_queen(n, first_queen_position)\nif result:\n    for row in result:\n        print(row)\nelse:\n    print(\"No solution exists\")",
+        "detail": "A4",
+        "documentation": {}
+    },
+    {
+        "label": "partition_deterministic",
+        "kind": 2,
+        "importPath": "A5",
+        "description": "A5",
+        "peekOfCode": "def partition_deterministic(arr, low, high):\n    pivot = arr[high] \n    i = low - 1  \n    swap_count = 0  \n    for j in range(low, high):\n        if arr[j] <= pivot:\n            i += 1\n            arr[i], arr[j] = arr[j], arr[i] \n            swap_count += 1\n    arr[i + 1], arr[high] = arr[high], arr[i + 1]  ",
+        "detail": "A5",
+        "documentation": {}
+    },
+    {
+        "label": "quicksort_deterministic",
+        "kind": 2,
+        "importPath": "A5",
+        "description": "A5",
+        "peekOfCode": "def quicksort_deterministic(arr, low, high):\n    swap_count = 0\n    if low < high:\n        pi, swaps = partition_deterministic(arr, low, high)\n        swap_count += swaps\n        swap_count += quicksort_deterministic(arr, low, pi - 1)\n        swap_count += quicksort_deterministic(arr, pi + 1, high)\n    return swap_count\ndef partition_randomized(arr, low, high):\n    pivot_index = random.randint(low, high) ",
+        "detail": "A5",
+        "documentation": {}
+    },
+    {
+        "label": "partition_randomized",
+        "kind": 2,
+        "importPath": "A5",
+        "description": "A5",
+        "peekOfCode": "def partition_randomized(arr, low, high):\n    pivot_index = random.randint(low, high) \n    arr[pivot_index], arr[high] = arr[high], arr[pivot_index]  \n    return partition_deterministic(arr, low, high)  \ndef quicksort_randomized(arr, low, high):\n    swap_count = 0\n    if low < high:\n        pi, swaps = partition_randomized(arr, low, high)\n        swap_count += swaps\n        swap_count += quicksort_randomized(arr, low, pi - 1)",
+        "detail": "A5",
+        "documentation": {}
+    },
+    {
+        "label": "quicksort_randomized",
+        "kind": 2,
+        "importPath": "A5",
+        "description": "A5",
+        "peekOfCode": "def quicksort_randomized(arr, low, high):\n    swap_count = 0\n    if low < high:\n        pi, swaps = partition_randomized(arr, low, high)\n        swap_count += swaps\n        swap_count += quicksort_randomized(arr, low, pi - 1)\n        swap_count += quicksort_randomized(arr, pi + 1, high)\n    return swap_count\ndef main():\n    n = int(input(\"Enter the number of elements in the array: \"))",
+        "detail": "A5",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "A5",
+        "description": "A5",
+        "peekOfCode": "def main():\n    n = int(input(\"Enter the number of elements in the array: \"))\n    arr = [random.randint(0, 1000) for _ in range(n)] \n    arr_deterministic = arr.copy()\n    arr_randomized = arr.copy()\n    print(\"\\nDeterministic QuickSort:\")\n    start_time = time.time()\n    swaps_deterministic = quicksort_deterministic(arr_deterministic, 0, n - 1)\n    end_time = time.time()\n    print(f\"Sorted Array: {arr_deterministic}\")",
+        "detail": "A5",
         "documentation": {}
     }
 ]
